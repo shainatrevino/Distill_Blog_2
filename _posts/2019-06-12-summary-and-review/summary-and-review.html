@@ -49,7 +49,7 @@
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["function.PNG","summary-and-review_files/bowser-1.9.3/bowser.min.js","summary-and-review_files/distill-2.2.21/template.v2.js","summary-and-review_files/figure-html5/unnamed-chunk-3-1.png","summary-and-review_files/figure-html5/unnamed-chunk-3-2.png","summary-and-review_files/jquery-1.11.3/jquery.min.js","summary-and-review_files/webcomponents-2.0.0/webcomponents.js","summary.PNG"]}
+  {"type":"character","attributes":{},"value":["function.PNG","summary-and-review_files/bowser-1.9.3/bowser.min.js","summary-and-review_files/distill-2.2.21/template.v2.js","summary-and-review_files/figure-html5/test plots-1.png","summary-and-review_files/figure-html5/test plots-2.png","summary-and-review_files/figure-html5/unnamed-chunk-3-1.png","summary-and-review_files/figure-html5/unnamed-chunk-3-2.png","summary-and-review_files/jquery-1.11.3/jquery.min.js","summary-and-review_files/webcomponents-2.0.0/webcomponents.js","summary.PNG"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -986,7 +986,7 @@ recent_drug &lt;- import(here(&quot;data&quot;, &quot;2015_drug_dep.csv&quot;),
 <img src="function.PNG" alt="All rights to Daniel Anderson" /><figcaption>All rights to Daniel Anderson</figcaption>
 </figure>
 <h2 id="application">Application</h2>
-<p>In this final section, we want to use <code>pmap()</code> to build custom plots that are able to visualize data across multiple inputs from a list. The question that we are looking to answer is: * How does average depression levels differ for males vs females across ethnicity. Answering this question in a singular plot would be pretty simple. But what if we want to answer this question but also see how these differences look across income levels and mental health services. That is Where the use of <code>pmap()</code> enters the picture! Before we apply <code>pmap()</code> we first want to nest our data into a list where the variables of interest (i.e., sex, ethnicity, depression levels) are nested within both mental health and income levels.</p>
+<p>In this final section, we want to use <code>pmap()</code> to build custom plots that are able to visualize data across multiple inputs from a list. The question that we are looking to answer is: <em>How does average depression levels differ for males vs females across ethnicity?</em> Answering this question in a singular plot would be pretty simple. But what if we want to answer this question but also see how these differences look across income levels and mental health services. That is Where the use of <code>pmap()</code> enters the picture! Before we apply <code>pmap()</code> we first want to nest our data into a list where the variables of interest (i.e., sex, ethnicity, depression levels) are nested within both mental health and income levels.</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 #transforming data to work with
@@ -1031,28 +1031,28 @@ plots &lt;- dat_1 %&gt;%
   }))
 #showing access to mental health services as a 1 or 2, instead of yes vs no. </code></pre>
 </div>
-<p>There are now 27 plots that visualize our question of interest across mental health and income levels by using the <code>glue</code> package. Note that the plots are saved as a list within the object “plots.” Thus, to access the plots we would * specify the object “plots” * access the list “plots” by using the $ operation * enter the number of which plot we want to view To test our code, we can randomly select any number from 1-27:</p>
+<p>There are now 27 plots that visualize our question of interest across mental health and income levels by using the <code>glue</code> package. Note that the plots are saved as a list within the object “plots.” Thus, to access the plots we would: 1. specify the object “plots,” 2. access the list “plots” by using the $ operation, 3. enter the number of which plot we want to view. To test our code, we can randomly select any number from 1-27:</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 plots$plots[[27]]</code></pre>
-<p><img src="summary-and-review_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+<p><img src="summary-and-review_files/figure-html5/test%20plots-1.png" width="624" /></p>
 <pre class="r"><code>
 plots$plots[[10]]</code></pre>
-<p><img src="summary-and-review_files/figure-html5/unnamed-chunk-3-2.png" width="624" /></p>
+<p><img src="summary-and-review_files/figure-html5/test%20plots-2.png" width="624" /></p>
 </div>
 <p>Finally, we want to save our work! To do this we combine the different skills we have learned including <code>glue</code> and <code>walk2</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
-# create an object files that uses meaningful names for the plots
+# create an object files that uses meaningful names for the plots. Specify an object for each variable that we will save by (i.e., income and mental_health)
 files &lt;- str_replace_all(tolower(plots$income), &quot; &quot;, &quot;-&quot;)
-# create the plot folder 
+files2 &lt;- str_replace_all(tolower(plots$mental_health), &quot; &quot;, &quot;-&quot;)
+# create the plot folder using fs
 fs::dir_create(here::here(&quot;plots&quot;))
-# use the glue function to apply the object files to each plot
-paths &lt;- here::here(&quot;plots&quot;, glue(&quot;{files}.png&quot;))
+# use the glue function to apply the object files to each plot with the object names we created above (i.e., files and files2)
+paths &lt;- here::here(&quot;plots&quot;, glue(&quot;{files}{files2}.png&quot;))
 # walk2 specifies the path and sizes of plots 
 walk2(paths, plots$plots, ggsave,
-      width = 9.5, height = 6.5, dpi = 500)
-#only saved 15 plots instead of th 44. It is because I am saving it by income only, how do I had the mental health services also?</code></pre>
+      width = 9.5, height = 6.5, dpi = 500)</code></pre>
 </div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
