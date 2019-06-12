@@ -1,0 +1,199 @@
+---
+title: "Parallel iteration and list columns"
+description: |
+  This post provides a few examples of parallel iteration and introduces working with list columns.
+author:
+  - name: Shaina Trevino, Jonathan Rochelle, Andre Klest 
+    url: https://github.com/shainatrevino/Distill_Blog_2
+date: 06-10-2019
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(here)
+library(rio)
+library(tidyverse)
+library(broom)
+library(glue)
+```
+
+The following script can be used to import the data we will use for this example.
+
+```{r import}
+drug_by_year <- import(here("data", "drug_by_year.csv"),
+                       setclass = "tbl_df")
+recent_drug <- import(here("data", "2015_drug_dep.csv"),
+                      setclass = "tbl_df")
+```
+
+1. `drug_by_year` includes data from 2005 to 2015 and reports on the people who responded yes to using illicit substances in the last year. 
+
+2. `recent_drug` includes has data from 2015-2016 and shows the age of first drug use, a summed depression score, whether or not participants have been to rehab, have access to mental health services, and have health insurance. 
+
+## Parallel Iteration (e.g., `map2_*`, `pmap_*`) 
+
+The `map` variants discussed above all take a single input to iterate (i.e., call the function on), but sometimes you need to iterate through more than just one input. 
+
+This can be accomplished with `map2_` or `pmap_`
+
+* `map2_` iterates over two inputs (e.g., two vectors)
+
+* `pmap_` iterates over any number of inputs
+
+For example, say you wanted to calculate a weighted mean from a vector of data values and a vector of weights.
+
+```{r parallel}
+#create vectors for simulated data from mean distribution of our data and weights
+obs <- map(1:1715, ~rnorm(n = 20, mean = 17.289, sd = 4.558))
+wts <- map(1:1715, ~rpois(20, 5))
+```
+
+The following example doesnt work because the weight argument is expecting a single value to apply to all observations, but we have a vector of weights. 
+
+```{r parallel1, error = TRUE}
+map_dbl(obs, ~weighted.mean(.x, w = wts))
+```
+
+Instead, we need a parallel iteration with `map2()` to run the function on each vector of observation with each corresponding vector of weights. 
+
+Also, notice that when using `map2()` you will have an additional argument `.y`, along with `.x`, that corresponds to the second vector you are iterating through. 
+
+```{r parallel2}
+#note that we used head() to prevent the entirety of the extensive list to be displayed
+head(map2_dbl(obs, wts, ~weighted.mean(.x, .y)))
+```
+
+The results is a weighted mean score for each participant. 
+
+### `pmap()` briefly
+
+`pmap()` can be supplied any number of inputs that you provide in a single list. This list can contain any number of inputs or arguments. 
+
+`pmap()` is very useful when working with data frames in which there are many vectors of the same length that can be provided as inputs (i.e., columns)
+
+You can name the inputs in the list which is helpful when iterating through complex functions
+
+We will show you how to use `pmap` to iterate and build custom plots in a later blog post
+
+
+## Other `purrr` functions (e.g., `walk_*`, `reduce`, `modify_*`) 
+
+The `map()` variants discussed above all return an output (either an atomic vector or list). However, sometimes you don't need to return an atomic vector or list, but iteration would still be helpful.
+  
+Very useful variant of `map()` is `walk()`, specifically `walk2()` which can be used to save objects to a disk. Note: when saving something to a disk you have to provide 2 inputs: the object and the file path - this requires parallel iteration.   
+
+The following code splits our longitudinal dataset by year and saves a separate .csv file for each year with the title ("year-2005", etc.) in the data folder of the working directory
+
+```{r walk-ex, eval = FALSE}
+by_year <- split(drug_by_year, drug_by_year$year)
+paths <- here("data", paste0("year-", names(by_year), ".csv"))
+walk2(by_year, paths, write.csv)
+list.files("data")
+```
+
+
+Other useful functions are: 
+
+* `reduce()` takes a vector of any length as it's input and returns a vector of length 1. For example `reduce(1:4, f)` returns `f(f(f(1, 2), 3), 4)`. 
+
+* `modify()` returns the same type of input it is provided. For example, `modify(df, f)` will run the function on each column of the data frame and return a data frame as the output.
+
+## Using `mutate` within `nest()` is powerful in list columns
+
+The data frames we have worked with so far have all contained columns of atomic vectors, however you can also have columns of lists within data frames (i.e., list column).
+
+You can use `group_by()` and `nest()` to split your data into list columns then apply `mutate` to:
+
+1. fit models by the grouping factor and extract coefficients
+
+2. compare model fits
+
+3. extract means from models fit with two groups
+
+4. fit multiple different models for each grouping factor and view coefficients
+
+
+First, we need to transform our data a bit so that we can properly fit our models.
+
+```{r nest-mutate1-clean}
+dat <- recent_drug %>% 
+  select(-1:-2, -age_stim) %>%
+  gather(drug, age_use, -age, -sum_depression:-sex) %>%
+  separate(drug, c("dis", "drug"), sep = "_") %>%
+  select(-dis) %>% 
+  filter(!is.na(age_use)) %>% 
+  mutate(mental_health = ifelse(mental_health == "Yes", "Yes", "No"),
+         sex = fct_relevel(sex, ref = "Male"),
+         mental_health = fct_relevel(mental_health, ref = "No"))
+```
+
+Then, we will use `group_by()` and `nest()` to split our data by each type of drug, fit a model that predicts age of first use from participant sex for each drug category, and view the coefficients.
+
+```{r nest-mutate1}
+#fit one model per drug and view coefficients
+by_drug_coefs <- dat %>% 
+  group_by(drug) %>% 
+  nest() %>% 
+  mutate(model = map(data, ~lm(age_use ~ sex, data = .x)),
+         coef = map(model, ~tidy(.x))) %>% 
+  unnest(coef)
+by_drug_coefs
+```
+
+Next, we can compare all model fits (note the model fits will not be good since our models were not significant).
+
+```{r nest-mutate2}
+#Look at model fit stats per drug model
+by_drug_fit <- dat %>% 
+  group_by(drug) %>% 
+  nest() %>% 
+  mutate(model = map(data, ~lm(age_use ~ sex, data = .x)),
+         fit = map(model, ~glance(.x))) %>% 
+  unnest(fit)
+by_drug_fit
+```
+
+Finally, we can also extract the mean age of first use for males and females for each drug
+
+```{r nest-mutate3}
+#mean age of use for males and females in first model
+by_drug_sex <- dat %>% 
+  group_by(drug) %>% 
+  nest() %>% 
+  mutate(model = map(data, ~lm(age_use ~ sex, data = .x)),
+         coefs = map(model, coef),
+         males = map_dbl(coefs, 1),
+         females = males + map_dbl(coefs, 2)) %>% 
+  select(drug, males, females)
+by_drug_sex
+```
+
+Another powerful use of list columns is being able to fit multiple models by each drug. Then, you could run through the same steps as above to compare model fits, etc. 
+
+``` {r nest-mutate4}
+#fit multiple models by year
+by_drug_models <- dat %>% 
+  group_by(drug) %>% 
+  nest() %>% 
+  mutate(m1 = map(data, ~lm(age_use ~ sex, data = .x)),
+         m2 = map(data, ~lm(age_use ~ sex + mental_health, data = .x)),
+         m3 = map(data, ~lm(age_use ~ sex * mental_health, data = .x)))
+```
+
+
+```{r nest-mutate, include = FALSE}
+d_long <- drug_by_year %>% 
+  select(-V1, -ethnicity) %>% 
+  mutate(year = factor(year),
+         drug = factor(drug),
+         sex = factor(sex),
+         response = factor(response))
+by_year_drug <- d_long %>% 
+  group_by(year, drug) %>% 
+  nest() %>% 
+  mutate(count = map(data, ~mutate(.x, count = n()))) 
+```
+

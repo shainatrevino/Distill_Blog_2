@@ -1,0 +1,113 @@
+---
+title: "Using purrr::map in data frames"
+description: |
+  This post provides a brief walk through of applying purrr:map to data frames.
+author:
+  - name: Shaina Trevino, Jonathan Rochelle, Andre Klest 
+    url: https://github.com/shainatrevino/Distill_Blog_2
+date: 06-11-2019
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(rio)
+drug_by_year <- import(here("data", "drug_by_year.csv"),
+                       setclass = "tbl_df")
+recent_drug <- import(here("data", "2015_drug_dep.csv"),
+                      setclass = "tbl_df")
+```
+
+
+### Information about the data
+
+Data used in this tutorial came from the Center for Disease Control and Prevention's (CDC) National Health and Nutrition Examination Survey (NHANES).
+
+These data and codebooks are available online [here](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm).
+
+For this tutorial we will use two data frames: 
+
+1. `drug_by_year` includes data from 2005 to 2015 and reports on the people who responded yes to using illicit substances in the last year. 
+
+2. `recent_drug` includes has data from 2015-2016 and shows the age of first drug use, a summed depression score, whether or not participants have been to rehab, have access to mental health services, and have health insurance. 
+
+## Using `map()` in data frames
+
+Since `map()` can take a vector for an input, and data frames are lists containing vectors, you can use `map` to iterate through data frames. 
+
+For example, say we want to use the NHANES data to calculate the mean for age of first use for each drug and depression scores. Since there are quite a bit of missing values in this data set, so we will need to add arguments to the mean function to ignore the missing data. 
+
+The data frame looks like this
+
+```{r tidy-data-map-ex, echo = FALSE}
+d <- recent_drug %>% 
+  select(age_cocaine:sum_depression)
+d
+```
+
+To add arguments to a function within `map()`, we need to create an inline anonymous function where your function is first specified with `function(x)` where `x` is a place holder for what the function is going to run on. Then you write a function that you want to run on each element (`x`). 
+
+Therefore, to calculate the means, our `map()` function would look like this
+
+```{r summarize}
+means <- map_dbl(d, function(x) mean(x, na.rm = TRUE)) 
+means
+```
+
+There is also a shortcut you can use within `map()` functions where you don't have to specify `function(x)`. 
+
+```{r summarize1}
+means <- map_dbl(d, ~ mean(.x, na.rm = TRUE))
+means
+```
+
+These two examples are exactly the same, the latter just has less code. `function(x)` is implied with the `~` and then you just have to use `.x` instead of `x` for what you are iterating over.
+
+## `map_df()`
+
+There is another `map()` variant that is useful when working with data frames, `map_df()`.
+
+You can use `map_df()` to return a data frame as the output instead of an atomic vector. 
+
+For example, say we want to return a data frame of the means and standard deviations of each column within our data frame. 
+
+You would expect the below example to work, but it doesn't because only the last line in the function is being evaluated and printed, so we only get standard deviations as the output. Also note you need to use curly braces for longer functions as seen here.
+
+```{r map-df}
+map_df(d, function(x) {
+  mean(x, na.rm = TRUE)
+  sd(x, na.rm = TRUE)
+}) 
+```
+
+Instead, you need to instead use `summarize()` to work within the data frame and `summarize()` each vector
+
+```{r map-df1}
+#creating a vector for the column names to add to data frame
+column_names <- colnames(d) 
+map_df(d, function(x) {
+  summarize(d, mean = mean(x, na.rm = TRUE),
+            sd = sd(x, na.rm = TRUE))
+}, .id = "column_names")
+```
+
+Or you could do the above in two separate steps, using `map()` to loop the functions through vectors and then put the vectors into a data frame
+
+```{r map-df2}
+#first create vectors by looping functions through data frames
+mean <- map(d, ~mean(.x, na.rm = TRUE))
+sd <- map(d, ~sd(.x, na.rm = TRUE))
+#then combine vectors
+cv <- c(mean, sd, recursive = TRUE)
+#manually change attributes
+attr(cv, "dim") <- c(6, 2) #6 variables in two columns (mean and sd)
+colnames(cv) <- c("mean", "sd")
+#transform to data frame
+cv <- data.frame(cv, row.names = column_names)
+cv
+```
+

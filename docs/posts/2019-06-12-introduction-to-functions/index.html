@@ -19,38 +19,38 @@
  <!--/radix_placeholder_import_source-->
 
   <!--radix_placeholder_meta_tags-->
-<title>My Blog: Welcome to Our Blog Introducing Iteration and Functions in R</title>
+<title>My Blog: Introduction to functions</title>
 
-<meta property="description" itemprop="description" content="Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio"/>
+<meta property="description" itemprop="description" content="This post provides an introductory walk through of creating and applying functions."/>
 
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2019-06-13"/>
-<meta property="article:created" itemprop="dateCreated" content="2019-06-13"/>
+<meta property="article:published" itemprop="datePublished" content="2019-06-09"/>
+<meta property="article:created" itemprop="dateCreated" content="2019-06-09"/>
 <meta name="article:author" content="Shaina Trevino, Jonathan Rochelle, Andre Klest"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="My Blog: Welcome to Our Blog Introducing Iteration and Functions in R"/>
+<meta property="og:title" content="My Blog: Introduction to functions"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio"/>
+<meta property="og:description" content="This post provides an introductory walk through of creating and applying functions."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="My Blog"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="My Blog: Welcome to Our Blog Introducing Iteration and Functions in R"/>
-<meta property="twitter:description" content="Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio"/>
+<meta property="twitter:title" content="My Blog: Introduction to functions"/>
+<meta property="twitter:description" content="This post provides an introductory walk through of creating and applying functions."/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Welcome to Our Blog Introducing Iteration and Functions in R"]},{"type":"character","attributes":{},"value":["Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Shaina Trevino, Jonathan Rochelle, Andre Klest"]},{"type":"character","attributes":{},"value":["https://github.com/shainatrevino/Distill_Blog_2"]},{"type":"character","attributes":{},"value":["University of Oregon"]},{"type":"character","attributes":{},"value":["https://education.uoregon.edu/"]}]}]},{"type":"character","attributes":{},"value":["06-13-2019"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Introduction to functions"]},{"type":"character","attributes":{},"value":["This post provides an introductory walk through of creating and applying functions."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Shaina Trevino, Jonathan Rochelle, Andre Klest"]},{"type":"character","attributes":{},"value":["https://github.com/shainatrevino/Distill_Blog_2"]}]}]},{"type":"character","attributes":{},"value":["06-09-2019"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["welcome_files/bowser-1.9.3/bowser.min.js","welcome_files/distill-2.2.21/template.v2.js","welcome_files/jquery-1.11.3/jquery.min.js","welcome_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["functions.PNG","introduction-to-functions_files/bowser-1.9.3/bowser.min.js","introduction-to-functions_files/distill-2.2.21/template.v2.js","introduction-to-functions_files/figure-html5/unnamed-chunk-8-1.png","introduction-to-functions_files/jquery-1.11.3/jquery.min.js","introduction-to-functions_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 
@@ -1281,7 +1281,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Welcome to Our Blog Introducing Iteration and Functions in R","description":"Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio","authors":[{"author":"Shaina Trevino, Jonathan Rochelle, Andre Klest","authorURL":"https://github.com/shainatrevino/Distill_Blog_2","affiliation":"University of Oregon","affiliationURL":"https://education.uoregon.edu/"}],"publishedDate":"2019-06-13T00:00:00.000-07:00","citationText":"Klest, 2019"}
+{"title":"Introduction to functions","description":"This post provides an introductory walk through of creating and applying functions.","authors":[{"author":"Shaina Trevino, Jonathan Rochelle, Andre Klest","authorURL":"https://github.com/shainatrevino/Distill_Blog_2","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2019-06-09T00:00:00.000-07:00","citationText":"Klest, 2019"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1303,25 +1303,203 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Welcome to Our Blog Introducing Iteration and Functions in R</h1>
-<p>Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio</p>
+<h1>Introduction to functions</h1>
+<p>This post provides an introductory walk through of creating and applying functions.</p>
 </div>
 
 <div class="d-byline">
-  Shaina Trevino, Jonathan Rochelle, Andre Klest <a href="https://github.com/shainatrevino/Distill_Blog_2" class="uri">https://github.com/shainatrevino/Distill_Blog_2</a> (University of Oregon)<a href="https://education.uoregon.edu/" class="uri">https://education.uoregon.edu/</a>
+  Shaina Trevino, Jonathan Rochelle, Andre Klest <a href="https://github.com/shainatrevino/Distill_Blog_2" class="uri">https://github.com/shainatrevino/Distill_Blog_2</a> 
   
-<br/>06-13-2019
+<br/>06-09-2019
 </div>
 
 <div class="d-article">
-<p>Data used in this tutorial came from the Center for Disease Control and Prevention’s (CDC) National Health and Nutrition Examination Survey (NHANES). The study began in 1999 and the most recent data collected and publicly available are from 2015-2016.</p>
-<p>These data and codebooks are available online <a href="https://www.cdc.gov/nchs/nhanes/about_nhanes.htm">here</a>.</p>
-<p>NHANES surveys around 5,000 participants accross the U.S. each year. Surveys include demographic, socioeconomic, dietary, and health related questions, as well as medical records, physiological assessments, and laboratory test.</p>
-<p>For this tutorial we will use two data frames:</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>The following script can be used to import the data we will use for this example.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+drug_by_year &lt;- import(here(&quot;data&quot;, &quot;drug_by_year.csv&quot;),
+                       setclass = &quot;tbl_df&quot;)
+recent_drug &lt;- import(here(&quot;data&quot;, &quot;2015_drug_dep.csv&quot;),
+                      setclass = &quot;tbl_df&quot;)</code></pre>
+</div>
 <ol type="1">
 <li><p><code>drug_by_year</code> includes data from 2005 to 2015 and reports on the people who responded yes to using illicit substances in the last year.</p></li>
 <li><p><code>recent_drug</code> includes has data from 2015-2016 and shows the age of first drug use, a summed depression score, whether or not participants have been to rehab, have access to mental health services, and have health insurance.</p></li>
 </ol>
+<h2 id="functions">Functions</h2>
+<p>As we saw in the previous post, using pre-formed functions in R (e.g., <code>map()</code>) can be incredibly useful for iterating through lists and data frames in an efficient and time-saving manner. An alternative or supplementary choice to using packages like <code>purrr</code> is the option of writing your own custom R functions independently of any function package. Previously, we learned how to add an inline anonymous function <code>function(x)</code> to <code>map()</code> in order to add additional arguments. Now we will cover how to formulate a custom function.</p>
+<h3 id="what-is-a-function">What is a function?</h3>
+<p><img src="functions.png" /></p>
+<p>In R, a function can be defined as any formula that carries out some type of operation. For example:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+100/5*7</code></pre>
+<pre><code>
+[1] 140</code></pre>
+</div>
+<p>In this case, each mathematical operation (i.e., / and *) can be defined as a function. For all functions, there are three essential components:</p>
+<ol type="1">
+<li><p>body(): a collection of statements that defines what a function does</p></li>
+<li><p>formals(): is the argument supplied to the function</p></li>
+<li><p>environments(): collection of objects in a function</p></li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+# example function
+square &lt;- function(x) {
+  x^2
+}
+# use of the function
+sum(2)</code></pre>
+<pre><code>
+[1] 2</code></pre>
+</div>
+<p>In the above function, whatever is contained in the <code>function()</code> is considered the <em>body</em> while the line below (i.e., x^2) that specifies the argument is considered the <em>formal</em>.</p>
+<p>There are several different ways that functions can be saved:</p>
+<ol type="1">
+<li>It can be stored as an object, which could be useful if you are planning on using it for future tasks.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+triple &lt;- function(x) {
+  x*3
+}</code></pre>
+</div>
+<ol start="2" type="1">
+<li>It can be stored as a list, which could allow you to run more than one function in a loop</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+fun_list &lt;- list(n = ~length(x),
+                 n_miss = ~sum(is.na(x)),
+                 mean = ~mean(x, na.rm = TRUE), 
+                 sd = ~sd(x, na.rm = TRUE),
+                 min = ~min(x),
+                 max = ~max(x))</code></pre>
+</div>
+<ol start="3" type="1">
+<li>It can be an anonymous function, which could be used when it is only going to be used once.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+function(x) {
+  x*3
+}</code></pre>
+<pre><code>
+function(x) {
+  x*3
+}</code></pre>
+</div>
+<h3 id="function-2-summarize-mean-sd-min-and-max-using-by-a-group_by-variable">Function 2: Summarize Mean, SD, Min, and Max using by a Group_By Variable</h3>
+<p>Now let’s take the age function we created earlier (evaluating whether age of first marijuana use was before or after the age of 18) and use it as a grouping variable to examine the mean, standard deviation, and min/max values for the age of first use variable in the “recent_drug,csv” data set.</p>
+<ol type="1">
+<li><p>First we name the data set, the outcome variable, and the grouping variable. We will use these to call up this info when applying the completed function.</p></li>
+<li><p>Next, we use “enquo”, part of the ‘dplyr’ package which should be loaded if you have not already done so, to select the variables we are planning to use in defining the function. Enquo helps R search for these variables within our data frame instead of searching the global environment for them. When using enquo the “!!” symbol will be necessary anytime we want to refer back to these variables that we are defining here in the first steps of creating our function. EX. instead of writing mean(our_var_name) as usual we will need to write mean(!!our_var_name).</p></li>
+<li><p>The %&gt;% symbol is a pipe operator and is used to feed each piece of our function through the proceeding statement, so that at each step the result of the previous argument is fed through the following argument. Ex. dataset %&gt;% step1 %&gt;% step2.</p></li>
+</ol>
+<p>4)“group_by” tells R to divide the outcome into a separate row for each category of the grouping variable.</p>
+<ol start="5" type="1">
+<li>“summarize” is the step where we invoke the operations and calculations on our outcome variable. The results of the summarize step should be separated thanks to the group_by statement in step 4,</li>
+</ol>
+<p>The function can now be stored and run on our data. We can examine the mean first age of use by any of the other variables in our dataset, including the 18 or below variable we created in the first function we created. Other interesting grouping variables might be income, ethnicity, or mental health status. If you decide you want to group our outcome first by two variables this is explored in function 3.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(dplyr)
+fun2_mean1group &lt;- function(data, cat_var, num_var){
+  cat_var &lt;- enquo(cat_var)
+  num_var &lt;- enquo(num_var)
+  data %&gt;% #if (cat_var2 &lt; 17)
+    group_by(!!cat_var) %&gt;%
+    summarize(mean = mean(!!num_var, na.rm = TRUE),
+              sd = sd(!!num_var, na.rm = TRUE),
+              min = min(!!num_var, na.rm = TRUE),
+              max = max(!!num_var, na.rm = TRUE))
+}
+fun2_mean1group(recent_drug, mental_health, age_marijuana)</code></pre>
+<pre><code>
+# A tibble: 4 x 5
+  mental_health  mean    sd   min   max
+  &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 &lt;NA&gt;           17.2  4.55     6    44
+2 Don&#39;t know     17.5  1.29    16    19
+3 No             17.3  4.51     6    50
+4 Yes            17.4  5.03    10    45</code></pre>
+</div>
+<h3 id="function-3-two-grouping-variables">Function 3: Two grouping variables</h3>
+<ol start="5" type="1">
+<li>If you wish to add a second “group_by” variable start by including a variable name in the Function itself, and include an additional enquo command</li>
+<li>Now in the “group_by” command include a second variable using the “!!” as before. ex: group_by(!!group_var1, !!group_var2)</li>
+<li>after the “summarize” command include an additional %&gt;% and add the “spread” command naming the variable as before (!!group_var1), and indicating the outcome you wish to report.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+fun3_mean2groups &lt;- function(x, cat_var1, cat_var2, outcome_var){
+  cat_var1 &lt;- enquo(cat_var1)
+  cat_var2 &lt;- enquo(cat_var2)
+  num_var &lt;- enquo(outcome_var)
+  
+  x %&gt;%
+    group_by(!!cat_var1, !!cat_var2) %&gt;%
+    summarize(mean = mean(!!num_var, na.rm = TRUE),
+              sd = sd(!!num_var, na.rm = TRUE), 
+              min = min(!!num_var, na.rm = TRUE), 
+              max = max(!!num_var, na.rm = TRUE))%&gt;%
+    spread(!!cat_var1, mean)
+}
+fun3_mean2groups(recent_drug, mental_health, income, age_marijuana)</code></pre>
+<pre><code>
+# A tibble: 48 x 8
+   income               sd   min   max `Don&#39;t know`    No   Yes `&lt;NA&gt;`
+   &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+ 1 $0 - $4,999        4.57    10    21           NA  NA    15.2   NA  
+ 2 $0 - $4,999        4.63     8    23           NA  NA    NA     16.2
+ 3 $0 - $4,999        4.83     7    30           NA  17.5  NA     NA  
+ 4 $100,000 and over  5.26    13    39           NA  NA    NA     18.5
+ 5 $100,000 and over  5.61     6    50           NA  17.7  NA     NA  
+ 6 $100,000 and over  8.82    13    45           NA  NA    19.8   NA  
+ 7 $15,000 to $19,9~  2.12    13    19           NA  NA    15.5   NA  
+ 8 $15,000 to $19,9~  3.39     9    24           NA  NA    NA     16.0
+ 9 $15,000 to $19,9~  3.91    10    35           NA  17.0  NA     NA  
+10 $20,000 to $24,9~  2.57    12    22           NA  NA    16     NA  
+# ... with 38 more rows</code></pre>
+</div>
+<h3 id="function-4-creating-a-function-using-ggplot">Function 4: Creating a Function Using GGPlot</h3>
+<p>To plot our outcome variable, in this case age of first marijuana use, we can create a function which will plot the age of first grouped by variable of interest. To test our function we will use “income” as category to group age of first marijuana use against on the x-axis.</p>
+<ol type="1">
+<li>Once again we begin by naming the variables our function will use to pull data from. In this case we will include a data variable to name the dataset, “x” for our x-axis variable, and “y” for our y-axis variable.</li>
+<li>Next, in the open bracket, we will include our plotting function in this case ggplot, and we will name the dataset and x/y variables so they match the variable names we will use in the final function.</li>
+<li>Now we add the method we will use to plot, choosing one of the ggplot options. In this case, we selected ‘geom_point’ which will provide a number of dots along the y-axis for each category. A color can also be selected. Ex. geom_point(color = “magenta”).</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+fun4_plot &lt;- function(data, x, y) {
+    ggplot(data, aes_string(x, y)) +
+      geom_point(color = &quot;blue&quot;) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+}
+fun4_plot(recent_drug, &quot;income&quot;, &quot;age_marijuana&quot;)</code></pre>
+<p><img src="introduction-to-functions_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+</div>
+<h3 id="function-5-plotting-mean-sd-min-max">Function 5: Plotting Mean, SD, Min, &amp; Max</h3>
+<p>To plot the summary data for our age of first use variables (age_marijuan, age_meth, age_heroin, and age_cocaine) found in our “recent_drug.csv” data we can create a function which will plot all of our summary variables (mean, sd, min, and max) at once.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+#not working can delete
+  fun5_plotsummary &lt;- function(filename) {
+  dat &lt;- read.csv(file = filename, header = FALSE)
+  mean_age &lt;- apply(dat, 2, mean, na.rm = TRUE)
+  plot(mean_age)
+  sd_age &lt;- apply(dat, 2, sd, na.rm = TRUE)
+  max_age &lt;- apply(dat, 2, max, na.rm = TRUE)
+  plot(max_age)
+  min_age &lt;- apply(dat, 2, min, na.rm = TRUE)
+  plot(min_age)
+}
+fun4_plot(recent_drug)</code></pre>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

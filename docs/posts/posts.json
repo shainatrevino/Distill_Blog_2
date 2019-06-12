@@ -1,17 +1,92 @@
 [
   {
     "path": "posts/welcome/",
-    "title": "Welcome to My Blog",
-    "description": "Welcome to our new blog, My Blog. We hope you enjoy \nreading what we have to say!",
+    "title": "Welcome to Our Blog Introducing Iteration and Functions in R",
+    "description": "Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio",
     "author": [
       {
-        "name": "Nora Jones",
-        "url": "https://example.com/norajones"
+        "name": "Shaina Trevino, Jonathan Rochelle, Andre Klest",
+        "url": "https://github.com/shainatrevino/Distill_Blog_2"
+      }
+    ],
+    "date": "2019-06-13",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2019-06-12T14:19:35-07:00"
+  },
+  {
+    "path": "posts/2019-06-12-introduction-to-purrrmap/",
+    "title": "Introduction to purrr::map",
+    "description": "This post provides a basic over of purrr:map and how to use it.",
+    "author": [
+      {
+        "name": "Shaina Trevino, Jonathan Rochelle, Andre Klest",
+        "url": "https://github.com/shainatrevino/Distill_Blog_2"
       }
     ],
     "date": "2019-06-12",
     "categories": [],
     "preview": {},
-    "last_modified": "2019-06-12T12:35:56-07:00"
+    "last_modified": "2019-06-12T14:05:16-07:00"
+  },
+  {
+    "path": "posts/2019-06-12-using-purrrmap-in-data-frames/",
+    "title": "Using purrr::map in data frames",
+    "description": "This post provides a brief walk through of applying purrr:map to data frames.",
+    "author": [
+      {
+        "name": "Shaina Trevino, Jonathan Rochelle, Andre Klest",
+        "url": "https://github.com/shainatrevino/Distill_Blog_2"
+      }
+    ],
+    "date": "2019-06-11",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2019-06-12T14:06:56-07:00"
+  },
+  {
+    "path": "posts/2019-06-12-parallel-iteration-and-lists-columns/",
+    "title": "Parallel iteration and list columns",
+    "description": "This post provides a few examples of parallel iteration and introduces working with list columns.",
+    "author": [
+      {
+        "name": "Shaina Trevino, Jonathan Rochelle, Andre Klest",
+        "url": "https://github.com/shainatrevino/Distill_Blog_2"
+      }
+    ],
+    "date": "2019-06-10",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2019-06-12T14:10:10-07:00"
+  },
+  {
+    "path": "posts/2019-06-12-introduction-to-functions/",
+    "title": "Introduction to functions",
+    "description": "This post provides an introductory walk through of creating and applying functions.",
+    "author": [
+      {
+        "name": "Shaina Trevino, Jonathan Rochelle, Andre Klest",
+        "url": "https://github.com/shainatrevino/Distill_Blog_2"
+      }
+    ],
+    "date": "2019-06-09",
+    "categories": [],
+    "preview": "posts/2019-06-12-introduction-to-functions/introduction-to-functions_files/figure-html5/unnamed-chunk-8-1.png",
+    "last_modified": "2019-06-12T14:15:29-07:00"
+  },
+  {
+    "path": "posts/2019-06-12-summary-and-review/",
+    "title": "Summary and review",
+    "description": "This post provides a brief overall summary of topics covered in previous posts.",
+    "author": [
+      {
+        "name": "Shaina Trevino, Jonathan Rochelle, Andre Klest",
+        "url": "https://github.com/shainatrevino/Distill_Blog_2"
+      }
+    ],
+    "date": "2019-06-08",
+    "categories": [],
+    "preview": "posts/2019-06-12-summary-and-review/summary-and-review_files/figure-html5/unnamed-chunk-3-1.png",
+    "last_modified": "2019-06-12T14:18:37-07:00"
   }
 ]

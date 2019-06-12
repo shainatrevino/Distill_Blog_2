@@ -19,367 +19,39 @@
  <!--/radix_placeholder_import_source-->
 
   <!--radix_placeholder_meta_tags-->
-  <title>My Blog: Introduction to Iteration and Functions</title>
+  <title>Parallel iteration and list columns</title>
+  
+  <meta property="description" itemprop="description" content="This post provides a few examples of parallel iteration and introduces working with list columns."/>
   
   
-  
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2019-06-10"/>
+  <meta property="article:created" itemprop="dateCreated" content="2019-06-10"/>
+  <meta name="article:author" content="Shaina Trevino, Jonathan Rochelle, Andre Klest"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="My Blog: Introduction to Iteration and Functions"/>
+  <meta property="og:title" content="Parallel iteration and list columns"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="This post provides a few examples of parallel iteration and introduces working with list columns."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="My Blog"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="My Blog: Introduction to Iteration and Functions"/>
+  <meta property="twitter:title" content="Parallel iteration and list columns"/>
+  <meta property="twitter:description" content="This post provides a few examples of parallel iteration and introduces working with list columns."/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["Introduction to Iteration and Functions"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Parallel iteration and list columns"]},{"type":"character","attributes":{},"value":["This post provides a few examples of parallel iteration and introduces working with list columns.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Shaina Trevino, Jonathan Rochelle, Andre Klest"]},{"type":"character","attributes":{},"value":["https://github.com/shainatrevino/Distill_Blog_2"]}]}]},{"type":"character","attributes":{},"value":["06-10-2019"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
-  <!--radix_placeholder_navigation_in_header-->
   
-  <script type="application/javascript">
-  
-    window.headroom_prevent_pin = false;
-  
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-  
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-  
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-  
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-  
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["parallel-iteration-with-map-variants_files/bowser-1.9.3/bowser.min.js","parallel-iteration-with-map-variants_files/distill-2.2.21/template.v2.js","parallel-iteration-with-map-variants_files/jquery-1.11.3/jquery.min.js","parallel-iteration-with-map-variants_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
-  
-  <style type="text/css">
-  
-  /* Theme (user-documented overrideables for nav appearance) */
-  
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #455a64;
-    font-size: 15px;
-    font-weight: 300;
-  }
-  
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  .distill-site-nav a:hover {
-    color: white;
-  }
-  
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-  
-  .distill-site-header {
-  
-  }
-  
-  .distill-site-footer {
-  
-  }
-  
-  
-  /* Site Header */
-  
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-  
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-  
-  
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-  
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-  
-  .distill-site-header .title {
-    font-size: 18px;
-  }
-  
-  .distill-site-header .logo {
-    padding: 0;
-  }
-  
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-  
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-  
-  
-  
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-  
-  
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-  
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-  
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-  
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-  
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  
-  .nav-dropdown-active {
-    display: block;
-  }
-  
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-  
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-  
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative;}
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-  
-  /* Site Footer */
-  
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-  
-  /* Headroom */
-  
-  d-title {
-    padding-top: 6rem;
-  }
-  
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-  
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-  
-  .headroom--unpinned {
-    top: -100px;
-  }
-  
-  .headroom--pinned {
-    top: 0;
-  }
-  
-  </style>
-  
-  <link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet"/>
-  <script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-  <script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
+  <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
   
@@ -1255,454 +927,207 @@
   </script>
   
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="parallel-iteration-with-map-variants_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="parallel-iteration-with-map-variants_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="parallel-iteration-with-map-variants_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="parallel-iteration-with-map-variants_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <!--/radix_placeholder_site_in_header-->
 
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Introduction to Iteration and Functions","authors":[]}
+{"title":"Parallel iteration and list columns","description":"This post provides a few examples of parallel iteration and introduces working with list columns.","authors":[{"author":"Shaina Trevino, Jonathan Rochelle, Andre Klest","authorURL":"https://github.com/shainatrevino/Distill_Blog_2","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2019-06-10T00:00:00.000-07:00","citationText":"Klest, 2019"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">My Blog</a>
-</div>
-<div class="nav-right">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-<style type="text/css">
-
-/* Styles for listing layout (hide title) */
-.layout-listing d-title, .layout-listing .d-title {
-  display: none;
-}
-
-/* Styles for posts lists (not auto-injected) */
-
-
-.posts-with-sidebar {
-  padding-left: 45px;
-  padding-right: 45px;
-}
-
-.posts-list .description h2,
-.posts-list .description p {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-}
-
-.posts-list .description h2 {
-  font-weight: 700;
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.posts-list h2.post-tag {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding-bottom: 12px;
-}
-.posts-list {
-  margin-top: 60px;
-  margin-bottom: 24px;
-}
-
-.posts-list .post-preview {
-  text-decoration: none;
-  overflow: hidden;
-  display: block;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 24px 0;
-}
-
-.post-preview-last {
-  border-bottom: none !important;
-}
-
-.posts-list .posts-list-caption {
-  grid-column: screen;
-  font-weight: 400;
-}
-
-.posts-list .post-preview h2 {
-  margin: 0 0 6px 0;
-  line-height: 1.2em;
-  font-style: normal;
-  font-size: 24px;
-}
-
-.posts-list .post-preview p {
-  margin: 0 0 12px 0;
-  line-height: 1.4em;
-  font-size: 16px;
-}
-
-.posts-list .post-preview .thumbnail {
-  box-sizing: border-box;
-  margin-bottom: 24px;
-  position: relative;
-  max-width: 500px;
-}
-.posts-list .post-preview img {
-  width: 100%;
-  display: block;
-}
-
-.posts-list .metadata {
-  font-size: 12px;
-  line-height: 1.4em;
-  margin-bottom: 18px;
-}
-
-.posts-list .metadata > * {
-  display: inline-block;
-}
-
-.posts-list .metadata .publishedDate {
-  margin-right: 1em;
-}
-
-.posts-list .metadata .tags {
-  margin-top: 1em;
-}
-
-.posts-list .tags .tag {
-  color: rgba(0,0,0,0.67);
-  padding: 0.3em 0.5em;
-  margin: 0;
-  font-size: 80%;
-  border: 1px solid rgba(0,0,0,0.4);
-  border-radius: 3px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.posts-list img {
-  opacity: 1;
-}
-
-.posts-list img[data-src] {
-  opacity: 0;
-}
-
-.posts-more {
-  clear: both;
-}
-
-
-.posts-sidebar {
-  font-size: 16px;
-}
-
-.posts-sidebar h3 {
-  font-size: 16px;
-  margin-top: 0;
-  margin-bottom: 0.5em;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-.sidebar-section {
-  margin-bottom: 30px;
-}
-
-.categories ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.categories li {
-  color: rgba(0, 0, 0, 0.8);
-  margin-bottom: 0;
-}
-
-.categories li>a {
-  border-bottom: none;
-}
-
-.categories li>a:hover {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-}
-
-.categories .active {
-  font-weight: 600;
-}
-
-.categories .category-count {
-  color: rgba(0, 0, 0, 0.4);
-}
-
-
-@media(min-width: 768px) {
-  .posts-list .post-preview h2 {
-    font-size: 26px;
-  }
-  .posts-list .post-preview .thumbnail {
-    float: right;
-    width: 35%;
-    margin-bottom: 0;
-  }
-  .posts-list .post-preview .description {
-    float: left;
-    width: 45%;
-  }
-  .posts-list .post-preview .metadata {
-    float: left;
-    width: 15%;
-    margin-top: 8px;
-  }
-  .posts-list .post-preview p {
-    margin: 0 0 12px 0;
-    line-height: 1.5em;
-    font-size: 16px;
-  }
-  .posts-with-sidebar .posts-list {
-    float: left;
-    width: 72%;
-  }
-  .posts-with-sidebar .posts-sidebar {
-    float: right;
-    width: 20%;
-    margin-top: 60px;
-    padding-top: 24px;
-    padding-bottom: 24px;
-  }
-}
-
-.downlevel .posts-list .post-preview {
-  color: inherit;
-}
-
-</style>
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace("#", "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if (category == page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-apply-limit l-page">
-<div class="posts-list">
-<h1 class="posts-list-caption">Introduction to Iteration and Functions</h1>
-<a href="posts/welcome/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">June 13, 2019</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Welcome to Our Blog Introducing Iteration and Functions in R</h2>
-<p>Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio</p>
-</div>
-</a>
-<a href="posts/2019-06-12-introduction-to-purrrmap/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">June 12, 2019</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Introduction to purrr::map</h2>
-<p>This post provides a basic over of purrr:map and how to use it.</p>
-</div>
-</a>
-<a href="posts/2019-06-12-using-purrrmap-in-data-frames/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">June 11, 2019</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Using purrr::map in data frames</h2>
-<p>This post provides a brief walk through of applying purrr:map to data frames.</p>
-</div>
-</a>
-<a href="posts/2019-06-12-parallel-iteration-and-lists-columns/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">June 10, 2019</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Parallel iteration and list columns</h2>
-<p>This post provides a few examples of parallel iteration and introduces working with list columns.</p>
-</div>
-</a>
-<a href="posts/2019-06-12-introduction-to-functions/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">June 9, 2019</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2019-06-12-introduction-to-functions/introduction-to-functions_files/figure-html5/unnamed-chunk-8-1.png"/>
-</div>
-<div class="description">
-<h2>Introduction to functions</h2>
-<p>This post provides an introductory walk through of creating and applying functions.</p>
-</div>
-</a>
-<a href="posts/2019-06-12-summary-and-review/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">June 8, 2019</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2019-06-12-summary-and-review/summary-and-review_files/figure-html5/unnamed-chunk-3-1.png"/>
-</div>
-<div class="description">
-<h2>Summary and review</h2>
-<p>This post provides a brief overall summary of topics covered in previous posts.</p>
-</div>
-</a>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Introduction to Iteration and Functions</h1>
-
+<h1>Parallel iteration and list columns</h1>
+<p>This post provides a few examples of parallel iteration and introduces working with list columns.</p>
 </div>
 
+<div class="d-byline">
+  Shaina Trevino, Jonathan Rochelle, Andre Klest <a href="https://github.com/shainatrevino/Distill_Blog_2" class="uri">https://github.com/shainatrevino/Distill_Blog_2</a> 
+  
+<br/>06-10-2019
+</div>
 
 <div class="d-article">
-
+<p>The following script can be used to import the data we will use for this example.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+drug_by_year &lt;- import(here(&quot;data&quot;, &quot;drug_by_year.csv&quot;),
+                       setclass = &quot;tbl_df&quot;)
+recent_drug &lt;- import(here(&quot;data&quot;, &quot;2015_drug_dep.csv&quot;),
+                      setclass = &quot;tbl_df&quot;)</code></pre>
+</div>
+<ol type="1">
+<li><p><code>drug_by_year</code> includes data from 2005 to 2015 and reports on the people who responded yes to using illicit substances in the last year.</p></li>
+<li><p><code>recent_drug</code> includes has data from 2015-2016 and shows the age of first drug use, a summed depression score, whether or not participants have been to rehab, have access to mental health services, and have health insurance.</p></li>
+</ol>
+<h2 id="parallel-iteration-e.g.-map2_-pmap_">Parallel Iteration (e.g., <code>map2_*</code>, <code>pmap_*</code>)</h2>
+<p>The <code>map</code> variants discussed above all take a single input to iterate (i.e., call the function on), but sometimes you need to iterate through more than just one input.</p>
+<p>This can be accomplished with <code>map2_</code> or <code>pmap_</code></p>
+<ul>
+<li><p><code>map2_</code> iterates over two inputs (e.g., two vectors)</p></li>
+<li><p><code>pmap_</code> iterates over any number of inputs</p></li>
+</ul>
+<p>For example, say you wanted to calculate a weighted mean from a vector of data values and a vector of weights.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+#create vectors for simulated data from mean distribution of our data and weights
+obs &lt;- map(1:1715, ~rnorm(n = 20, mean = 17.289, sd = 4.558))
+wts &lt;- map(1:1715, ~rpois(20, 5))</code></pre>
+</div>
+<p>The following example doesnt work because the weight argument is expecting a single value to apply to all observations, but we have a vector of weights.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+map_dbl(obs, ~weighted.mean(.x, w = wts))</code></pre>
+<pre><code>
+Error in weighted.mean.default(.x, w = wts): &#39;x&#39; and &#39;w&#39; must have the same length</code></pre>
+</div>
+<p>Instead, we need a parallel iteration with <code>map2()</code> to run the function on each vector of observation with each corresponding vector of weights.</p>
+<p>Also, notice that when using <code>map2()</code> you will have an additional argument <code>.y</code>, along with <code>.x</code>, that corresponds to the second vector you are iterating through.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+#note that we used head() to prevent the entirety of the extensive list to be displayed
+head(map2_dbl(obs, wts, ~weighted.mean(.x, .y)))</code></pre>
+<pre><code>
+[1] 18.37088 18.58015 18.78800 17.61579 17.30825 16.57126</code></pre>
+</div>
+<p>The results is a weighted mean score for each participant.</p>
+<h3 id="pmap-briefly"><code>pmap()</code> briefly</h3>
+<p><code>pmap()</code> can be supplied any number of inputs that you provide in a single list. This list can contain any number of inputs or arguments.</p>
+<p><code>pmap()</code> is very useful when working with data frames in which there are many vectors of the same length that can be provided as inputs (i.e., columns)</p>
+<p>You can name the inputs in the list which is helpful when iterating through complex functions</p>
+<p>We will show you how to use <code>pmap</code> to iterate and build custom plots in a later blog post</p>
+<h2 id="other-purrr-functions-e.g.-walk_-reduce-modify_">Other <code>purrr</code> functions (e.g., <code>walk_*</code>, <code>reduce</code>, <code>modify_*</code>)</h2>
+<p>The <code>map()</code> variants discussed above all return an output (either an atomic vector or list). However, sometimes you don’t need to return an atomic vector or list, but iteration would still be helpful.</p>
+<p>Very useful variant of <code>map()</code> is <code>walk()</code>, specifically <code>walk2()</code> which can be used to save objects to a disk. Note: when saving something to a disk you have to provide 2 inputs: the object and the file path - this requires parallel iteration.</p>
+<p>The following code splits our longitudinal dataset by year and saves a separate .csv file for each year with the title (“year-2005”, etc.) in the data folder of the working directory</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+by_year &lt;- split(drug_by_year, drug_by_year$year)
+paths &lt;- here(&quot;data&quot;, paste0(&quot;year-&quot;, names(by_year), &quot;.csv&quot;))
+walk2(by_year, paths, write.csv)
+list.files(&quot;data&quot;)</code></pre>
+</div>
+<p>Other useful functions are:</p>
+<ul>
+<li><p><code>reduce()</code> takes a vector of any length as it’s input and returns a vector of length 1. For example <code>reduce(1:4, f)</code> returns <code>f(f(f(1, 2), 3), 4)</code>.</p></li>
+<li><p><code>modify()</code> returns the same type of input it is provided. For example, <code>modify(df, f)</code> will run the function on each column of the data frame and return a data frame as the output.</p></li>
+</ul>
+<h2 id="using-mutate-within-nest-is-powerful-in-list-columns">Using <code>mutate</code> within <code>nest()</code> is powerful in list columns</h2>
+<p>The data frames we have worked with so far have all contained columns of atomic vectors, however you can also have columns of lists within data frames (i.e., list column).</p>
+<p>You can use <code>group_by()</code> and <code>nest()</code> to split your data into list columns then apply <code>mutate</code> to:</p>
+<ol type="1">
+<li><p>fit models by the grouping factor and extract coefficients</p></li>
+<li><p>compare model fits</p></li>
+<li><p>extract means from models fit with two groups</p></li>
+<li><p>fit multiple different models for each grouping factor and view coefficients</p></li>
+</ol>
+<p>First, we need to transform our data a bit so that we can properly fit our models.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+dat &lt;- recent_drug %&gt;% 
+  select(-1:-2, -age_stim) %&gt;%
+  gather(drug, age_use, -age, -sum_depression:-sex) %&gt;%
+  separate(drug, c(&quot;dis&quot;, &quot;drug&quot;), sep = &quot;_&quot;) %&gt;%
+  select(-dis) %&gt;% 
+  filter(!is.na(age_use)) %&gt;% 
+  mutate(mental_health = ifelse(mental_health == &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;),
+         sex = fct_relevel(sex, ref = &quot;Male&quot;),
+         mental_health = fct_relevel(mental_health, ref = &quot;No&quot;))</code></pre>
+</div>
+<p>Then, we will use <code>group_by()</code> and <code>nest()</code> to split our data by each type of drug, fit a model that predicts age of first use from participant sex for each drug category, and view the coefficients.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+#fit one model per drug and view coefficients
+by_drug_coefs &lt;- dat %&gt;% 
+  group_by(drug) %&gt;% 
+  nest() %&gt;% 
+  mutate(model = map(data, ~lm(age_use ~ sex, data = .x)),
+         coef = map(model, ~tidy(.x))) %&gt;% 
+  unnest(coef)
+by_drug_coefs</code></pre>
+<pre><code>
+# A tibble: 8 x 6
+  drug      term        estimate std.error statistic   p.value
+  &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 cocaine   (Intercept)   21.7       0.338    64.2   8.94e-249
+2 cocaine   sexFemale     -0.700     0.483    -1.45  1.48e-  1
+3 heroin    (Intercept)   24.7       1.54     16.0   2.25e- 23
+4 heroin    sexFemale     -1.47      2.08     -0.709 4.81e-  1
+5 meth      (Intercept)   21.4       0.703    30.4   2.59e- 76
+6 meth      sexFemale      0.513     1.02      0.501 6.17e-  1
+7 marijuana (Intercept)   17.1       0.156   110.    0.       
+8 marijuana sexFemale      0.329     0.220     1.50  1.35e-  1</code></pre>
+</div>
+<p>Next, we can compare all model fits (note the model fits will not be good since our models were not significant).</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+#Look at model fit stats per drug model
+by_drug_fit &lt;- dat %&gt;% 
+  group_by(drug) %&gt;% 
+  nest() %&gt;% 
+  mutate(model = map(data, ~lm(age_use ~ sex, data = .x)),
+         fit = map(model, ~glance(.x))) %&gt;% 
+  unnest(fit)
+by_drug_fit</code></pre>
+<pre><code>
+# A tibble: 4 x 14
+  drug  data  model r.squared adj.r.squared sigma statistic p.value
+  &lt;chr&gt; &lt;lis&gt; &lt;lis&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 coca~ &lt;tib~ &lt;S3:~   0.00403      0.00211   5.51     2.10    0.148
+2 hero~ &lt;tib~ &lt;S3:~   0.00831     -0.00822   8.14     0.503   0.481
+3 meth  &lt;tib~ &lt;S3:~   0.00127     -0.00380   7.21     0.251   0.617
+4 mari~ &lt;tib~ &lt;S3:~   0.00131      0.000723  4.56     2.24    0.135
+# ... with 6 more variables: df &lt;int&gt;, logLik &lt;dbl&gt;, AIC &lt;dbl&gt;,
+#   BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+</div>
+<p>Finally, we can also extract the mean age of first use for males and females for each drug</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+#mean age of use for males and females in first model
+by_drug_sex &lt;- dat %&gt;% 
+  group_by(drug) %&gt;% 
+  nest() %&gt;% 
+  mutate(model = map(data, ~lm(age_use ~ sex, data = .x)),
+         coefs = map(model, coef),
+         males = map_dbl(coefs, 1),
+         females = males + map_dbl(coefs, 2)) %&gt;% 
+  select(drug, males, females)
+by_drug_sex</code></pre>
+<pre><code>
+# A tibble: 4 x 3
+  drug      males females
+  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 cocaine    21.7    21.0
+2 heroin     24.7    23.2
+3 meth       21.4    21.9
+4 marijuana  17.1    17.5</code></pre>
+</div>
+<p>Another powerful use of list columns is being able to fit multiple models by each drug. Then, you could run through the same steps as above to compare model fits, etc.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+#fit multiple models by year
+by_drug_models &lt;- dat %&gt;% 
+  group_by(drug) %&gt;% 
+  nest() %&gt;% 
+  mutate(m1 = map(data, ~lm(age_use ~ sex, data = .x)),
+         m2 = map(data, ~lm(age_use ~ sex + mental_health, data = .x)),
+         m3 = map(data, ~lm(age_use ~ sex * mental_health, data = .x)))</code></pre>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

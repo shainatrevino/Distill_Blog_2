@@ -1,0 +1,115 @@
+---
+title: "Introduction to purrr::map"
+description: |
+  This post provides a basic over of purrr:map and how to use it.
+author:
+  - name: Shaina Trevino, Jonathan Rochelle, Andre Klest 
+    url: https://github.com/shainatrevino/Distill_Blog_2
+date: 06-12-2019
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## What is `purrr::map`
+
+![](purrr.PNG) 
+
+`purrr:map()` is a functional. It takes a vector (or list of vectors) and a function as it's input, runs the function for each element in the vector and then returns a list.
+
+  * The `purrr` package is loaded when you load `tidyverse`
+  
+For example, suppose you have a list that contains two other numbered lists with 5 values rounded to two decimal places and you wanted to round them all to the nearest integer.
+
+Our list looks like this:
+
+```{r create-list}
+#creating list from two vectors of decimal values
+v <- c(1.85, 2.07, 3.71, 4.21, 5.36)
+v1 <- c(1.23, 2.53, 3.44, 4.71, 5.96)
+l <- list(v, v1)
+l
+```
+
+If we only had 1 vector to round, we could use the `round()` function
+
+```{r ex-round}
+round(v)
+```
+
+However, this does not work when supplied our list
+
+```{r error-code, error = TRUE}
+round(l)
+```
+
+Instead, we need a function that will apply `round()` to every element in our list. That's where we can use `map()`
+
+```{r map-round}
+#takes vector and rounds up
+map(l, round)
+```
+
+Notice how the output from `map()` is a list, and the `round()` function has been applied to each element in the list. 
+
+You could also use `map()` with a single vector, however, in this case, the output is the same as when solely using the `round()` function. Additionally, you can adjust which decimal that you would like to round to by specifying the digits. 
+
+```{r round-single-vec}
+map(v, round, digits = 1)
+```
+
+However, as mentioned above, this output is a list. When you have an atomic vector as an input or a list of numbered lists of length 1, you can coerce your output to an atomic vector. This coercion allows the function to utilize values that work within the operation called on. 
+
+## `map()` variants
+  
+You can override the return of list and instead return an atomic vector by using variants of `map()`:
+
+    * `map_dbl` returns vector of type double
+    
+    * `map_chr` returns a vector of type character
+    
+    * `map_lgl` returns a vector of type logical (e.g., `TRUE` or `FALSE`)
+    
+    * `map_int` returns a vector of type integer
+    
+For example, if we use `map_dbl` or `map_chr` for our previous example, we will have the same results, but the output will be different types. 
+
+```{r map-ex}
+#return vector of type double
+map_dbl(v, round)
+#return vector as character
+map_chr(v, round)
+```
+
+Notice how the numbers are actually the same, but `map_dbl` returns a numeric vector, whereas `map_chr` returns a character vector.
+
+What if we wanted to know if each element in our vector is of type double, we would want to return a logical vector that tells us if the value is double (e.g., `TRUE`) or not (e.g., `FALSE`)
+
+```{r map-ex1}
+#return vector of type logical
+map_lgl(v, is.double)
+```
+
+This logical vector tells us that each element is of type double.
+
+`map_int` returns an integer vector (i.e., whole numbers), therefore, we can use it to ask questions like: what is the length of each element in my vector?
+
+```{r map-ex2}
+#return vector of type integer
+map_int(v, length)
+```
+
+In this example, there is only 1 value per element in the vector, so all the lengths are 1.
+
+If we use the same code on our list object, it should tell us how many numbers are in each element of the list.
+
+```{r map-ex2-b}
+map_int(l, length)
+```
+
+There are 2 elements in our list and each has 5 values. 

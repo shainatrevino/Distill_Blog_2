@@ -19,38 +19,38 @@
  <!--/radix_placeholder_import_source-->
 
   <!--radix_placeholder_meta_tags-->
-<title>My Blog: Welcome to Our Blog Introducing Iteration and Functions in R</title>
+<title>My Blog: Introduction to purrr::map</title>
 
-<meta property="description" itemprop="description" content="Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio"/>
+<meta property="description" itemprop="description" content="This post provides a basic over of purrr:map and how to use it."/>
 
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2019-06-13"/>
-<meta property="article:created" itemprop="dateCreated" content="2019-06-13"/>
+<meta property="article:published" itemprop="datePublished" content="2019-06-12"/>
+<meta property="article:created" itemprop="dateCreated" content="2019-06-12"/>
 <meta name="article:author" content="Shaina Trevino, Jonathan Rochelle, Andre Klest"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="My Blog: Welcome to Our Blog Introducing Iteration and Functions in R"/>
+<meta property="og:title" content="My Blog: Introduction to purrr::map"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio"/>
+<meta property="og:description" content="This post provides a basic over of purrr:map and how to use it."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="My Blog"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="My Blog: Welcome to Our Blog Introducing Iteration and Functions in R"/>
-<meta property="twitter:description" content="Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio"/>
+<meta property="twitter:title" content="My Blog: Introduction to purrr::map"/>
+<meta property="twitter:description" content="This post provides a basic over of purrr:map and how to use it."/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Welcome to Our Blog Introducing Iteration and Functions in R"]},{"type":"character","attributes":{},"value":["Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Shaina Trevino, Jonathan Rochelle, Andre Klest"]},{"type":"character","attributes":{},"value":["https://github.com/shainatrevino/Distill_Blog_2"]},{"type":"character","attributes":{},"value":["University of Oregon"]},{"type":"character","attributes":{},"value":["https://education.uoregon.edu/"]}]}]},{"type":"character","attributes":{},"value":["06-13-2019"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Introduction to purrr::map"]},{"type":"character","attributes":{},"value":["This post provides a basic over of purrr:map and how to use it."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Shaina Trevino, Jonathan Rochelle, Andre Klest"]},{"type":"character","attributes":{},"value":["https://github.com/shainatrevino/Distill_Blog_2"]}]}]},{"type":"character","attributes":{},"value":["06-12-2019"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["welcome_files/bowser-1.9.3/bowser.min.js","welcome_files/distill-2.2.21/template.v2.js","welcome_files/jquery-1.11.3/jquery.min.js","welcome_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["introduction-to-purrrmap_files/bowser-1.9.3/bowser.min.js","introduction-to-purrrmap_files/distill-2.2.21/template.v2.js","introduction-to-purrrmap_files/jquery-1.11.3/jquery.min.js","introduction-to-purrrmap_files/webcomponents-2.0.0/webcomponents.js","purrr.PNG"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 
@@ -1281,7 +1281,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Welcome to Our Blog Introducing Iteration and Functions in R","description":"Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio","authors":[{"author":"Shaina Trevino, Jonathan Rochelle, Andre Klest","authorURL":"https://github.com/shainatrevino/Distill_Blog_2","affiliation":"University of Oregon","affiliationURL":"https://education.uoregon.edu/"}],"publishedDate":"2019-06-13T00:00:00.000-07:00","citationText":"Klest, 2019"}
+{"title":"Introduction to purrr::map","description":"This post provides a basic over of purrr:map and how to use it.","authors":[{"author":"Shaina Trevino, Jonathan Rochelle, Andre Klest","authorURL":"https://github.com/shainatrevino/Distill_Blog_2","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2019-06-12T00:00:00.000-07:00","citationText":"Klest, 2019"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1303,25 +1303,137 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Welcome to Our Blog Introducing Iteration and Functions in R</h1>
-<p>Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio</p>
+<h1>Introduction to purrr::map</h1>
+<p>This post provides a basic over of purrr:map and how to use it.</p>
 </div>
 
 <div class="d-byline">
-  Shaina Trevino, Jonathan Rochelle, Andre Klest <a href="https://github.com/shainatrevino/Distill_Blog_2" class="uri">https://github.com/shainatrevino/Distill_Blog_2</a> (University of Oregon)<a href="https://education.uoregon.edu/" class="uri">https://education.uoregon.edu/</a>
+  Shaina Trevino, Jonathan Rochelle, Andre Klest <a href="https://github.com/shainatrevino/Distill_Blog_2" class="uri">https://github.com/shainatrevino/Distill_Blog_2</a> 
   
-<br/>06-13-2019
+<br/>06-12-2019
 </div>
 
 <div class="d-article">
-<p>Data used in this tutorial came from the Center for Disease Control and Prevention’s (CDC) National Health and Nutrition Examination Survey (NHANES). The study began in 1999 and the most recent data collected and publicly available are from 2015-2016.</p>
-<p>These data and codebooks are available online <a href="https://www.cdc.gov/nchs/nhanes/about_nhanes.htm">here</a>.</p>
-<p>NHANES surveys around 5,000 participants accross the U.S. each year. Surveys include demographic, socioeconomic, dietary, and health related questions, as well as medical records, physiological assessments, and laboratory test.</p>
-<p>For this tutorial we will use two data frames:</p>
-<ol type="1">
-<li><p><code>drug_by_year</code> includes data from 2005 to 2015 and reports on the people who responded yes to using illicit substances in the last year.</p></li>
-<li><p><code>recent_drug</code> includes has data from 2015-2016 and shows the age of first drug use, a summed depression score, whether or not participants have been to rehab, have access to mental health services, and have health insurance.</p></li>
-</ol>
+<h2 id="what-is-purrrmap">What is <code>purrr::map</code></h2>
+<p><img src="purrr.PNG" /></p>
+<p><code>purrr:map()</code> is a functional. It takes a vector (or list of vectors) and a function as it’s input, runs the function for each element in the vector and then returns a list.</p>
+<ul>
+<li>The <code>purrr</code> package is loaded when you load <code>tidyverse</code></li>
+</ul>
+<p>For example, suppose you have a list that contains two other numbered lists with 5 values rounded to two decimal places and you wanted to round them all to the nearest integer.</p>
+<p>Our list looks like this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+#creating list from two vectors of decimal values
+v &lt;- c(1.85, 2.07, 3.71, 4.21, 5.36)
+v1 &lt;- c(1.23, 2.53, 3.44, 4.71, 5.96)
+l &lt;- list(v, v1)
+l</code></pre>
+<pre><code>
+[[1]]
+[1] 1.85 2.07 3.71 4.21 5.36
+
+[[2]]
+[1] 1.23 2.53 3.44 4.71 5.96</code></pre>
+</div>
+<p>If we only had 1 vector to round, we could use the <code>round()</code> function</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+round(v)</code></pre>
+<pre><code>
+[1] 2 2 4 4 5</code></pre>
+</div>
+<p>However, this does not work when supplied our list</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+round(l)</code></pre>
+<pre><code>
+Error in round(l): non-numeric argument to mathematical function</code></pre>
+</div>
+<p>Instead, we need a function that will apply <code>round()</code> to every element in our list. That’s where we can use <code>map()</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+#takes vector and rounds up
+map(l, round)</code></pre>
+<pre><code>
+[[1]]
+[1] 2 2 4 4 5
+
+[[2]]
+[1] 1 3 3 5 6</code></pre>
+</div>
+<p>Notice how the output from <code>map()</code> is a list, and the <code>round()</code> function has been applied to each element in the list.</p>
+<p>You could also use <code>map()</code> with a single vector, however, in this case, the output is the same as when solely using the <code>round()</code> function. Additionally, you can adjust which decimal that you would like to round to by specifying the digits.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+map(v, round, digits = 1)</code></pre>
+<pre><code>
+[[1]]
+[1] 1.8
+
+[[2]]
+[1] 2.1
+
+[[3]]
+[1] 3.7
+
+[[4]]
+[1] 4.2
+
+[[5]]
+[1] 5.4</code></pre>
+</div>
+<p>However, as mentioned above, this output is a list. When you have an atomic vector as an input or a list of numbered lists of length 1, you can coerce your output to an atomic vector. This coercion allows the function to utilize values that work within the operation called on.</p>
+<h2 id="map-variants"><code>map()</code> variants</h2>
+<p>You can override the return of list and instead return an atomic vector by using variants of <code>map()</code>:</p>
+<pre><code>
+* `map_dbl` returns vector of type double
+
+* `map_chr` returns a vector of type character
+
+* `map_lgl` returns a vector of type logical (e.g., `TRUE` or `FALSE`)
+
+* `map_int` returns a vector of type integer</code></pre>
+<p>For example, if we use <code>map_dbl</code> or <code>map_chr</code> for our previous example, we will have the same results, but the output will be different types.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+#return vector of type double
+map_dbl(v, round)</code></pre>
+<pre><code>
+[1] 2 2 4 4 5</code></pre>
+<pre class="r"><code>
+#return vector as character
+map_chr(v, round)</code></pre>
+<pre><code>
+[1] &quot;2.000000&quot; &quot;2.000000&quot; &quot;4.000000&quot; &quot;4.000000&quot; &quot;5.000000&quot;</code></pre>
+</div>
+<p>Notice how the numbers are actually the same, but <code>map_dbl</code> returns a numeric vector, whereas <code>map_chr</code> returns a character vector.</p>
+<p>What if we wanted to know if each element in our vector is of type double, we would want to return a logical vector that tells us if the value is double (e.g., <code>TRUE</code>) or not (e.g., <code>FALSE</code>)</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+#return vector of type logical
+map_lgl(v, is.double)</code></pre>
+<pre><code>
+[1] TRUE TRUE TRUE TRUE TRUE</code></pre>
+</div>
+<p>This logical vector tells us that each element is of type double.</p>
+<p><code>map_int</code> returns an integer vector (i.e., whole numbers), therefore, we can use it to ask questions like: what is the length of each element in my vector?</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+#return vector of type integer
+map_int(v, length)</code></pre>
+<pre><code>
+[1] 1 1 1 1 1</code></pre>
+</div>
+<p>In this example, there is only 1 value per element in the vector, so all the lengths are 1.</p>
+<p>If we use the same code on our list object, it should tell us how many numbers are in each element of the list.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+map_int(l, length)</code></pre>
+<pre><code>
+[1] 5 5</code></pre>
+</div>
+<p>There are 2 elements in our list and each has 5 values.</p>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -1,14 +1,13 @@
 ---
-title: "Welcome to My Blog"
+title: "Welcome to Our Blog Introducing Iteration and Functions in R"
 description: |
-  Welcome to our new blog, My Blog. We hope you enjoy 
-  reading what we have to say!
+  Welcome to our blog, here we will provide a walk throughs for a number of applications for using iterations and functions in R-Studio
 author:
-  - name: Nora Jones 
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
-date: 06-12-2019
+  - name: Shaina Trevino, Jonathan Rochelle, Andre Klest 
+    url: https://github.com/shainatrevino/Distill_Blog_2
+    affiliation: University of Oregon
+    affiliation_url: https://education.uoregon.edu/
+date: 06-13-2019
 output:
   distill::distill_article:
     self_contained: false
@@ -21,6 +20,18 @@ knitr::opts_chunk$set(echo = FALSE)
 # https://rstudio.github.io/distill/blog.html
 
 ```
+
+Data used in this tutorial came from the Center for Disease Control and Prevention's (CDC) National Health and Nutrition Examination Survey (NHANES). The study began in 1999 and the most recent data collected and publicly available are from 2015-2016.
+
+These data and codebooks are available online [here](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm).
+
+NHANES surveys around 5,000 participants accross the U.S. each year. Surveys include demographic, socioeconomic, dietary, and health related questions, as well as medical records, physiological assessments, and laboratory test. 
+
+For this tutorial we will use two data frames: 
+
+1. `drug_by_year` includes data from 2005 to 2015 and reports on the people who responded yes to using illicit substances in the last year. 
+
+2. `recent_drug` includes has data from 2015-2016 and shows the age of first drug use, a summed depression score, whether or not participants have been to rehab, have access to mental health services, and have health insurance. 
 
 
 
