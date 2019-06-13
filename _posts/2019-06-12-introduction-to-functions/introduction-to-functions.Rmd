@@ -176,7 +176,7 @@ fun4_plot(recent_drug, "income", "age_marijuana")
 To plot the summary data for our age of first use variables (age_marijuan, age_meth, age_heroin, and age_cocaine) found in our "recent_drug.csv" data we can create a function which will plot all of our summary variables (mean, sd, min, and max) at once.
 
 ```{r eval = FALSE}
-#not working can delete
+
   fun5_plotsummary <- function(filename) {
   dat <- read.csv(file = filename, header = FALSE)
   mean_age <- apply(dat, 2, mean, na.rm = TRUE)
